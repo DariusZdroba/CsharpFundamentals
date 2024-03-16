@@ -6,6 +6,7 @@ namespace C_Fundamentals_
     {
           public delegate void MyDelegate(string msg);
           public delegate string AdditionDel();
+          public delegate T AddGenericDel<T>(T param1, T param2); // generic delegate
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
@@ -31,6 +32,20 @@ namespace C_Fundamentals_
             AdditionDel worldDel = () => "World";
             AdditionDel addDel = helloDel + worldDel;
             InvokeAdditionDel(addDel); // will only return the worldDel delegate's return value , returns "World"
+
+
+            AddGenericDel<int> intGenericDel = Sum;
+            AddGenericDel<string> stringGenericDel = Concat;
+
+            Console.WriteLine("Generic del, int sumn: " +  intGenericDel(5,6));
+            Console.WriteLine("Generic del, string concat: " +  stringGenericDel("Hello from "," concat func"));
+        }
+        public static int Sum(int a, int b)
+        {
+            return a + b;
+        }
+        public static string Concat(string s, string z) {
+            return s + z;
         }
         static void MethodA(string message) {  Console.WriteLine(message); }
         // delegate parameter
